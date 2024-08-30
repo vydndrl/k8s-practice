@@ -1,0 +1,46 @@
+# 아래의 주요 key, secret은 쿠버네티스의 secret 자원을 사용하여 실행시점에 대체
+
+
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${DB_HOST}:3306/ordersystem
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    # spring에서 db로의 커넥션 개수 제한
+    # 기본적으로 대략 10개 가량의 커넥션이 1개의 서버에서 발생.
+    tomcat:
+      max-active: 5
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  redis:
+  # 아래 REDIS_HOST는 deployment에서 정의한 env 변수명과 일치해야함
+    host: ${REDIS_HOST}
+    port: 6379
+logging:
+  level:
+    root: info
+jwt:
+  expiration: 30
+  secretKey: ${JWT_SECRET}
+  expirationRt: 14400
+  secretKeyRt: ${JWT_SECRET_RT}
+
+# aws s3 설정
+cloud:
+  aws:
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+    region:
+      static: ap-northeast-2
+    s3:
+      bucket: woongi-file
+
