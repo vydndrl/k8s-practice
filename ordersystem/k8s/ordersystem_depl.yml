@@ -69,3 +69,4 @@ spec:
               secretKeyRef:
                 key: AWS_SECRET_KEY
                 name: wg-app-secrets
+                
