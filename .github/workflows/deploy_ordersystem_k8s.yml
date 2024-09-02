@@ -45,4 +45,3 @@ jobs:
         run: |
           kubectl apply -f ./ordersystem/k8s/ordersystem_depl.yml
           kubectl rollout restart deployment ordersystem-deployment -n wg
-
