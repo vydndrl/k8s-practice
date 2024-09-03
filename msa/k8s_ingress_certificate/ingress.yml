@@ -34,6 +34,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: producet-service
+            name: product-service
             port:
               number: 80      
