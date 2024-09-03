@@ -68,7 +68,7 @@ public class OrderingService {
             System.out.println(productDto);
             // redis를 통한 재고관리 및 재고잔량 확인
             if (productDto.getName().contains("sale")) {
-                int newQuantity = (stockInventoryService.decreaseStock(dto.getProductId(), dto.getProductCount())).intValue(); // Long -> int로 형변환
+                int newQuantity = (stockInventoryService.decreaseStock(productDto.getId(), productDto.getStockQuantity())).intValue(); // Long -> int로 형변환
                 if(newQuantity < 0){
                     throw new IllegalArgumentException("재고부족");
                 }

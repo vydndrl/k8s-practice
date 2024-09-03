@@ -24,7 +24,7 @@ public class StockInventoryService {
     // 아래 메서드 리턴 값은 잔량 값을 리턴
     public Long decreaseStock(Long itemId, int quantity){
         Object remains = redisTemplate.opsForValue().get(String.valueOf(itemId));
-        int longRemains = Integer.parseInt(Object.requireNonNull(remains).toString());
+        int longRemains = Integer.parseInt(remains.toString());
         if(longRemains < quantity){
             return -1L;
         }else{
